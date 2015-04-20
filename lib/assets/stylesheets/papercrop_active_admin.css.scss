@@ -1,0 +1,16 @@
+/**
+ * Styles necessary to use the Papercrop input classes for ActiveAdmin. 
+ */
+
+.papercrop_container {
+  display: block;
+  float: left;
+  width: 80%;
+  overflow: auto;
+  margin-bottom: 10px;
+  .papercrop_cropper {
+  }
+  .papercrop_preview {
+  }
+
+}
