@@ -47,10 +47,11 @@ class PapercropCropperInput
   def cropper_html
     cropper_width = @options[:cropper_width] || 500
     preview_width = @options[:preview_width] || 200
+    set_select = @options[:set_select] || nil
     
     cropper_html = '<div class="papercrop_container">' <<
       '<div class="papercrop_cropper">' <<
-        builder.cropbox(method, :width => cropper_width) <<
+        builder.cropbox(method, :width => cropper_width, :set_select => set_select) <<
       '</div>' <<
       '<div class="papercrop_live_preview">' <<
         builder.crop_preview(method, :width => preview_width) <<
