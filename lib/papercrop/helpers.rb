@@ -17,11 +17,11 @@ module Papercrop
 
       if self.object.send(attachment).class == Paperclip::Attachment
         wrapper_options = {
-          :id    => "#{attachment}_crop_preview_wrapper",
+          :id    => "#{id_string_for(attachment)}_crop_preview_wrapper",
           :style => "width:#{width}px; height:#{height}px; overflow:hidden"
         }
 
-        preview_image = @template.image_tag(self.object.send(attachment).url, :id => "#{attachment}_crop_preview")
+        preview_image = @template.image_tag(self.object.send(attachment).url, :id => "#{id_string_for(attachment)}_crop_preview")
 
         @template.content_tag(:div, preview_image, wrapper_options)
       end
@@ -56,14 +56,34 @@ module Papercrop
         box << self.hidden_field(:"#{attachment}_set_select", :value => set_select)
 
         for attribute in [:crop_x, :crop_y, :crop_w, :crop_h, :aspect, :min_size, :max_size] do
-          box << self.hidden_field(:"#{attachment}_#{attribute}", :id => "#{attachment}_#{attribute}")
+          box << self.hidden_field(:"#{attachment}_#{attribute}")
         end
 
         crop_image = @template.image_tag(self.object.send(attachment).url)
 
-        box << @template.content_tag(:div, crop_image, :id => "#{attachment}_cropbox")
+        box << @template.content_tag(:div, crop_image, :id => "#{id_string_for(attachment)}_cropbox")
       end
     end
+
+    def id_classname
+      classname = @object.class.name.demodulize.underscore
+      unless @options[:parent_builder].nil?
+        parent_builder = @options[:parent_builder]
+        parent_classname = parent_builder.object.class.name.demodulize.underscore
+        classname = "#{parent_classname}_#{classname}"
+      end
+      classname
+    end
+    
+
+    def id_string_for(attachment)
+      "#{id_classname}_#{attachment}"
+    end
+
+    def id_attributes_string_for(attachment)
+      "#{id_classname}_attributes_#{attachment}"
+    end
+
   end
 end
 

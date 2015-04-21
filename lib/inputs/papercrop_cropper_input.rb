@@ -4,10 +4,16 @@ class PapercropCropperInput
 
   def to_html
     return '' unless can_preview?
+
+    id_string = @builder.id_string_for(method)
+    id_attributes_string = @builder.id_attributes_string_for(method)
+
     input_wrapping do
       label_html <<
+      "<div id=\"papercrop_container_#{id_string}\" class=\"papercrop_container\" data-id-string=\"#{id_string}\" data-id-attributes-string=\"#{id_attributes_string}\">".html_safe <<
       image_preview_content <<
-      cropper_html
+      cropper_html <<
+      "</div>".html_safe 
     end
   end
 
@@ -49,15 +55,15 @@ class PapercropCropperInput
     preview_width = @options[:preview_width] || 200
     set_select = @options[:set_select] || nil
     
-    cropper_html = '<div class="papercrop_container">' <<
+    cropper_html = '<div class="papercrop_cropper_container">' <<
       '<div class="papercrop_cropper">' <<
         builder.cropbox(method, :width => cropper_width, :set_select => set_select) <<
       '</div>' <<
       '<div class="papercrop_live_preview">' <<
         builder.crop_preview(method, :width => preview_width) <<
       '</div>' <<
-      '<button id="papercrop_done_button">Done</button>' <<
-      '<button id="papercrop_cancel_button">Cancel</button>' <<
+      '<button class="papercrop_done_button">Done</button>' <<
+      '<button class="papercrop_cancel_button">Cancel</button>' <<
     '</div>'
 
     cropper_html.html_safe
