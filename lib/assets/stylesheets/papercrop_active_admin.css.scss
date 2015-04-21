@@ -2,15 +2,48 @@
  * Styles necessary to use the Papercrop input classes for ActiveAdmin. 
  */
 
-.papercrop_container {
+.papercrop_preview_container {
   display: block;
-  float: left;
+  .papercrop_crop_button {
+    display: block;
+    position: absolute;
+    right: 16px;
+    bottom: 36px;
+  }
+}
+
+.papercrop_container {
+  display: none;
+  &.active {
+    display: block;
+  }
+
+  position: fixed;
   width: 80%;
+  height: 60%;
+  left: 10%;
+  top: 20%;
+  background-color: white;
   overflow: auto;
-  margin-bottom: 10px;
+  padding: 16px;
+  z-index: 1000;
+
   .papercrop_cropper {
   }
   .papercrop_preview {
   }
 
 }
+
+#papercrop_scrim {
+  background-color: black;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  z-index: 999;
+}
+
