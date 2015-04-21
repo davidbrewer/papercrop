@@ -110,6 +110,7 @@ module Papercrop
             attachment_instance.assign(attachment_instance)
             attachment_instance.save
 
+            self.update_column(:"#{attachment_name}_updated_at", Time.now.utc)
             reset_crop_attributes_of(attachment_name)
           end
         end
