@@ -2,6 +2,11 @@
  * Styles necessary to use the Papercrop input classes for ActiveAdmin. 
  */
 
+@import "compass";
+@import "compass/css3";
+@import "compass/css3/user-interface";
+@import "active_admin/mixins/all";
+
 .papercrop_preview_container {
   display: inline-block;
   position: relative;
@@ -56,6 +61,11 @@
   .papercrop_crop_interface {
     display: block;
     clear: both;
+  }
+
+  /* the style of this cancel button is ripped straight from activeadmin */
+  .papercrop_cancel_button {
+    @include light-button;
   }
 
   .papercrop_help {
