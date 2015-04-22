@@ -54,6 +54,10 @@ class PapercropCropperInput
     cropper_width = @options[:cropper_width] || 500
     preview_width = @options[:preview_width] || 200
     set_select = @options[:set_select] || nil
+    done_button_text = @options[:done_button_text] || "Done"
+    cancel_button_text = @options[:cancel_button_text] || "Cancel"
+    help_text = @options[:help_text] || nil
+
     
     cropper_html = '<div class="papercrop_cropper_container">' <<
       '<div class="papercrop_cropper">' <<
@@ -62,8 +66,9 @@ class PapercropCropperInput
       '<div class="papercrop_live_preview">' <<
         builder.crop_preview(method, :width => preview_width) <<
       '</div>' <<
-      '<button class="papercrop_done_button">Done</button>' <<
-      '<button class="papercrop_cancel_button">Cancel</button>' <<
+      ((help_text.nil?) ? "" : '<div class="papercrop_help">' << help_text << '</div>') <<
+      "<button class=\"papercrop_done_button\">#{done_button_text}</button>" <<
+      "<button class=\"papercrop_cancel_button\">#{cancel_button_text}</button>" <<
     '</div>'
 
     cropper_html.html_safe
