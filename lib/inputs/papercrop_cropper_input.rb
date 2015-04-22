@@ -60,17 +60,19 @@ class PapercropCropperInput
 
     
     cropper_html = '<div class="papercrop_cropper_container">' <<
-      '<h2>Crop Tool</h2>' <<
-      '<div class="papercrop_cropper">' <<
-        builder.cropbox(method, :width => cropper_width, :set_select => set_select) <<
-      '</div>' <<
-      '<div class="papercrop_live_preview"><h3>Crop Preview</h3>' <<
-        builder.crop_preview(method, :width => preview_width) <<
-      '</div>' <<
-      '<div class="papercrop_crop_interface">' <<
-        ((help_text.nil?) ? "" : '<div class="papercrop_help">' << help_text << '</div>') <<
-        "<button class=\"papercrop_done_button\">#{done_button_text}</button>" <<
-        "<button class=\"papercrop_cancel_button\">#{cancel_button_text}</button>" <<
+      '<div class="papercrop_cropper_popup">' <<
+        '<h2>Crop Tool</h2>' <<
+        '<div class="papercrop_cropper">' <<
+          builder.cropbox(method, :width => cropper_width, :set_select => set_select) <<
+        '</div>' <<
+        '<div class="papercrop_live_preview"><h3>Preview</h3>' <<
+          builder.crop_preview(method, :width => preview_width) <<
+        '</div>' <<
+        '<div class="papercrop_crop_interface">' <<
+          ((help_text.nil?) ? "" : '<div class="papercrop_help">' << help_text << '</div>') <<
+          "<button class=\"papercrop_done_button\">#{done_button_text}</button>" <<
+          "<button class=\"papercrop_cancel_button\">#{cancel_button_text}</button>" <<
+        '</div>' <<
       '</div>' <<
     '</div>'
 
