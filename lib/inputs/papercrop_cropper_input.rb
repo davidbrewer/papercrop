@@ -38,10 +38,10 @@ class PapercropCropperInput
 
   def image_preview_html
     if (link_size)
-      preview = template.link_to template.image_tag(@object.send(method).url(preview_size), :class => "image-preview"),
+      preview = template.link_to template.image_tag(@object.send(method).url(preview_size), :class => "papercrop_image_preview"),
         @object.send(method).url(link_size), :target => "_blank"
     else
-      preview = template.image_tag(@object.send(method).url(preview_size), :class => "image-preview")
+      preview = template.image_tag(@object.send(method).url(preview_size), :class => "papercrop_image_preview")
     end
 
     "<div class=\"papercrop_preview_container\">
