@@ -60,6 +60,7 @@ class PapercropCropperInput
 
     
     cropper_html = '<div class="papercrop_cropper_container">' <<
+      '<h2>Crop Tool</h2>' <<
       '<div class="papercrop_cropper">' <<
         builder.cropbox(method, :width => cropper_width, :set_select => set_select) <<
       '</div>' <<

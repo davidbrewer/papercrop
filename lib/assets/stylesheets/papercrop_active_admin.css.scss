@@ -28,6 +28,11 @@
     display: inline-block;
   }
   
+  @include section-background;
+  h2 {
+    @include section-header;
+  }
+  
   box-sizing: border-box;
 
   position: fixed;
@@ -41,17 +46,16 @@
   /*transform: translate(-50%, -50%);*/
 
   top: 10%;
-  background-color: white;
   overflow: auto;
-  padding: 16px;
   z-index: 1000;
 
   .papercrop_cropper {
-    margin: 0 16px 16px 0;
+    margin: 16px 0 0 16px;
     display: inline-block;
     float: left;
   }
   .papercrop_live_preview {
+    margin: 16px 16px 0 16px;
     h3 {
       font-weight: bold;
     }
@@ -59,6 +63,7 @@
   }
 
   .papercrop_crop_interface {
+    margin: 16px;
     display: block;
     clear: both;
   }
