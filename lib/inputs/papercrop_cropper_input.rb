@@ -6,7 +6,11 @@ class PapercropCropperInput
     return '' unless can_preview?
 
     id_string = @builder.id_string_for(method)
-    id_attributes_string = @builder.id_attributes_string_for(method)
+    if use_nested_model?
+      id_attributes_string = @builder.id_attributes_string_for(method)
+    else
+      id_attributes_string = id_string
+    end
 
     input_wrapping do
       label_html <<
@@ -18,6 +22,15 @@ class PapercropCropperInput
   end
 
   private
+
+  def use_nested_model?
+    if options[:use_nested_model].nil?
+      true
+    else
+      options[:use_nested_model]
+    end
+  end
+    
 
   def can_preview?
     image = @object.send(method)
