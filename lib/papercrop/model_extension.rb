@@ -110,8 +110,12 @@ module Papercrop
             attachment_instance.assign(attachment_instance)
             attachment_instance.save
 
-            self.update_column(:"#{attachment_name}_updated_at", Time.now.utc)
             reset_crop_attributes_of(attachment_name)
+
+            # we save the record with the attachment in order to persist all
+            # potentially changed file information, such as the fingerprint
+            # of the file in some cases.
+            self.save
           end
         end
 
